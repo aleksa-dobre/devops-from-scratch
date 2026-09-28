@@ -19,5 +19,5 @@ jobs:
           chmod u+x test.sh
           ./test.sh
       - run: |
-          echo "${{secrets.GITHUB_TOKEN}}" | docker login -u aleksa-dobre --password-stdin
+          echo "${{secrets.GITHUB_TOKEN}}" | docker login ghcr.io -u aleksa-dobre --password-stdin
           docker push ghcr.io/aleksa-dobre/hello:v1
