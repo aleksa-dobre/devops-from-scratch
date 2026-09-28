@@ -14,8 +14,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          docker build -t hello:v1 .
-          docker run -d -p 8000:8000 hello:v1
+        docker build -t ghcr.io/aleksa-dobre/hello:v1 .
+          docker run -d -p 8000:8000 ghcr.io/aleksa-dobre/hello:v1
           chmod u+x test.sh
           ./test.sh
       - run: |
