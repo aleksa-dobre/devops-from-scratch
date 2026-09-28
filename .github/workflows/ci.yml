@@ -1,0 +1,22 @@
+name: CI Action
+
+on: push
+
+
+permissions:
+  content: read
+  packages: write
+
+
+jobs:
+  runs-on: ubuntu-latest
+  steps:
+    uses: actions/checkout@v4
+    run: |
+      docker build -t hello .
+      docker run -d -p 8000:8000 hello
+      chmod u+x test.sh
+      ./test.sh
+    run: |
+      echo "${{token.GITHUB_TOKEN}}" | docker login -u aleksa-dobre ghcr.io/aleksa-dobre/hello:v1 --password-stdin
+      docker push ghcr.io/aleksa-dobre/hello:v1
