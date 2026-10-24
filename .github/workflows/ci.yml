@@ -1,0 +1,18 @@
+name: Test pipeline
+
+on: push 
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Pull from Repo
+      uses: actions/checkout@v6 
+    - name: Build and Run 
+      run: |
+        docker build -t hello .
+        docker run -d -p 8000:8000 hello
+        chmod u+x test.sh 
+        ./test.sh
