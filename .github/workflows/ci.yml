@@ -10,11 +10,13 @@ jobs:
   test-build:
     works-on: ubuntu-latest
     steps:
-    - uses: actions/workflows@v6
-    - run: |
-      docker build -t hello .
-      docker run -d- p 8000:8000
-      chmod u+x test.sh 
-      ./test.sh 
+      - name: Checkout
+        uses: actions/workflows@v6
+      - name: Test  
+        run: |
+          docker build -t hello .
+          docker run -d- p 8000:8000
+          chmod u+x test.sh 
+          ./test.sh 
 
       
